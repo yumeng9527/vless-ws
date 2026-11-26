@@ -6,7 +6,11 @@ const http = require('http');
 const net = require('net');
 const crypto = require('crypto');
 
-const UUID = process.env.UUID || 'cd0c03ad-b5af-4294-a279-016ee707f3f6';
+const UUID = process.env.UUID || '';
+if (!UUID) {
+  console.error('FATAL: 环境变量 UUID 未设置');
+  process.exit(1);
+}
 const UID = Buffer.from(UUID.replace(/-/g, ''), 'hex');
 const WS_GUID = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11';
 
